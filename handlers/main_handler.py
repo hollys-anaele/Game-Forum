@@ -3,7 +3,7 @@ import jinja_env
 import logging
 import webapp2
 
-class MainHandler(webapp2.RequestHandler):
+class MainHandler(webapp2.RequestHandler): #the about page
     def get(self):
     	logging.info("MainHandler")
         html_params = {
