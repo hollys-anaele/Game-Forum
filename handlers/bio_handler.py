@@ -1,0 +1,14 @@
+
+import jinja_env
+import logging
+import webapp2
+
+class BioHandler(webapp2.RequestHandler): #the bio page
+    def get(self):
+    	logging.info("BioHandler")
+        html_params = {
+            "title": "Your Profile",
+            "content": "Tell us about yourself"
+        }
+        template = jinja_env.env.get_template('templates/tmpl.html')
+        self.response.out.write(template.render(html_params))
