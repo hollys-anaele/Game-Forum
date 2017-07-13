@@ -1,5 +1,6 @@
 import os
 import webapp2
+import logging
 
 from handlers import jinja_env
 from handlers import main_handler
