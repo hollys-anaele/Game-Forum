@@ -2,10 +2,13 @@
 import jinja_env
 import logging
 import webapp2
+import os
+
+from google.appengine.ext import ndb
 
 class BioHandler(webapp2.RequestHandler): #the profile page
     def get(self):
-    	logging.info("BioHandler")
+        logging.info("BioHandler")
         html_params = {
             "title": "Your Profile",
             "content": "Tell us about yourself"

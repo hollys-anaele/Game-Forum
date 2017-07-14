@@ -2,10 +2,13 @@
 import jinja_env
 import logging
 import webapp2
+import os
+
+from google.appengine.ext import ndb
 
 class MainHandler(webapp2.RequestHandler): #the about page
     def get(self):
-    	logging.info("MainHandler")
+        logging.info("MainHandler")
         html_params = {
             "title": "Main Title",
             "content": "Hello"

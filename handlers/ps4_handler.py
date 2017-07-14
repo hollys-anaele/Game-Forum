@@ -2,10 +2,13 @@
 import jinja_env
 import logging
 import webapp2
+import os
+
+from google.appengine.ext import ndb
 
 class PS4Handler(webapp2.RequestHandler): #the bio page
     def get(self):
-    	logging.info("PS4Handler")
+        logging.info("PS4Handler")
         html_params = {
             "title": "PS4 Discussion Board",
             "content": "Say some stuff about ps4 games"
