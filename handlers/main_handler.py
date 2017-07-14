@@ -21,3 +21,4 @@ class MainHandler(webapp2.RequestHandler): #the about page
   #      user_comments = user_comments_query.fetch()
   #      logging.info(len(user_comments))
   #      comments =  Comment.query().fetch()
+  #
