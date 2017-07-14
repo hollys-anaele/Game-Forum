@@ -5,14 +5,13 @@ import webapp2
 
 from models import book
 
-class SecondHandler(webapp2.RequestHandler):
+class XboxHandler(webapp2.RequestHandler):
     def get(self):
-    	logging.info("SecondHandler")
-    	books = book.Book.query().fetch()
-    	# do stuff with books...
+    	#logging.info("XBONEHandler")
+    	# do stuff with xbox
         html_params = {
-            "title": "Second Title",
-            "content": "Goodbye"
+            "title": "Xbox One Discussion Board",
+            "content": "talk about xbox"
         }
         template = jinja_env.env.get_template('templates/tmpl.html')
         self.response.out.write(template.render(html_params))

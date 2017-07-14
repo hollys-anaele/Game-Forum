@@ -3,7 +3,7 @@ import jinja_env
 import logging
 import webapp2
 
-class BioHandler(webapp2.RequestHandler): #the profile page
+class BioHandler(webapp2.RequestHandler): #the bio page
     def get(self):
     	logging.info("BioHandler")
         html_params = {
