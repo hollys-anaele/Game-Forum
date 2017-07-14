@@ -14,7 +14,7 @@ class XboxHandler(webapp2.RequestHandler):
     	# do stuff with xbox
         html_params = {
             "title": "Xbox One Discussion Board",
-            "content": "talk about xbox"
+            "content": "This page is dedicated to discussing specifically Xbox One games."
         }
         template = jinja_env.env.get_template('templates/tmpl.html')
         self.response.out.write(template.render(html_params))

@@ -10,7 +10,7 @@ class MainHandler(webapp2.RequestHandler): #the about page
     def get(self):
         logging.info("MainHandler")
         html_params = {
-            "title": "Main Title",
+            "title": "Arcade Crawlers",
             "content": "Hello"
         }
         template = jinja_env.env.get_template('templates/tmpl.html')
