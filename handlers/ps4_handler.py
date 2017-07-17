@@ -27,7 +27,7 @@ class PS4Handler(webapp2.RequestHandler):
             "title": "PS4 Discussion Board",
             "html_comments": comment_str
         }
-        template = jinja_env.get_template("templates/comments.html")
+        template = jinja_env.env.get_template("templates/tmpl.html")
         self.response.out.write(template.render(thing))
 
        

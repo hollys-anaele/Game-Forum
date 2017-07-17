@@ -19,6 +19,7 @@ class MainHandler(webapp2.RequestHandler): #the about page
             "title": "Arcade Crawlers",
             "content": "Hello"
         }
+
         
 
 
@@ -28,6 +29,8 @@ class MainHandler(webapp2.RequestHandler): #the about page
        
 
         template = jinja_env.env.get_template('templates/main.html')
+        
+
         self.response.out.write(template.render(html_params))
         
         
