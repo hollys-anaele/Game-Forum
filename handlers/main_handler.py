@@ -6,64 +6,58 @@ import webapp2
 from google.appengine.ext import ndb
 from google.appengine.api import users
 import os
+#from [folder] import [filename] (for author, user comment, and email
+from models import author_model
 
+
+
+#comments
 class Comment(ndb.Model):
     author = ndb.StringProperty()
     contents = ndb.StringProperty()
-
-
-class MainHandler(webapp2.RequestHandler): #the about page
+    
+class MainHandler(webapp2.RequestHandler):
     def get(self):
-        logging.info("MainHandler")
-        html_params = {
-            "title": "Arcade Crawlers",
-            "content": "Hello"
-        }
-        template = jinja_env.env.get_template('templates/tmpl.html')
-        self.response.out.write(template.render(html_params))
-
-
-        current_user = users.get_current_user()
         logging.info(users.get_current_user())
         logging.info(users.create_login_url("/"))
-        self.response.out.write('<h1> Welcome to The Game Forum!!!</h1>')
         
+        current_user = users.get_current_user()
         
-        #trying to make if user is logged in redirect to home page 
+        user_comments_query = Comment.query(Comment.author == current_user.email())
+        user_comments = user_comments_query.fetch()
+        logging.info(len(user_comments))
+ #       userlog = len(user_comments)
+        comments = Comment.query().fetch()
+        comment_str = ""
+        for comment in comments:
+            comment_str += "<div>"
+            comment_str += "<h3>User: " + comment.author + "</h3>"
+            comment_str += "<p>" + comment.contents + "</p>"
+            comment_str += "</div>"
+            
+        template = jinja_env.get_template("templates/main.html")
         
-        if users.creare_login_url:
-           user_comments_query = Comment.query(Comment.author == current_user.email())
-        else: 
-            self.redirect("/main_handler") #redirects back to this page
-        
-        
-        user_forum = user_comments_query.fetch()
-        logging.info(len(user_forum))
-        forum_post =  Comment.query().fetch()
-
-
-        forum_str = " "
-        for comment in forum_post:
-            forum_str += "<div>"
-            forum_str += "<h3>" + comment.author + "</h3>"
-            forum_str += "<p> " + comment.contents + "</p>"
-            forum_str += "<h4>" + str(comment.fav_animal) + "</h4>"
-            forum_str += "</div>"
-
-            template = jinja_environment.get_template("templates/coments.html")
-
-        henry ={
-        "html_comments": forum_str,
-        "html_login_url": users.create_login_url("/rachel"),
-        "user": user.get_current_user(),
-        "count_comment": len(user_forum)
+        henry = {
+        "html_comments": comment_str,
+        "html_login_url": users.create_login_url("/"),
+        "html_userlog": len(user_comments)
         }
-        if current_user != None:
-            henry["html_user"] = current_user.email()
+        
+        user = users.get_current_user()
+        if user != None:
+            henry["html_user"] = user.email()
         
         self.response.out.write(template.render(henry))
+    
     def post(self):
-        author_name = users.get_current_user()
-        r_comment = self.request.get("form_comment")
-        logging.info("Comment " + r_comment) 
-        new_comment = Comment(author = author_name.email(), contents = r_comment, fav_animal = r_animal_content)
+        author = users.get_current_user()
+        if author != None:
+            r_contents = self.request.get("form_contents")
+            logging.info("contents was "+r_contents)
+
+            new_comment = Comment(author=author.email(), contents=r_contents)
+            new_comment.put()
+
+        self.redirect("/")
+        
+        
