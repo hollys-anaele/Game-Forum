@@ -27,7 +27,9 @@ class MainHandler(webapp2.RequestHandler): #the about page
         logging.info(users.get_current_user())
         logging.info(users.create_login_url("/"))
         self.response.out.write('<h1> Welcome to The Game Forum!!!</h1>')
-        user_comments_query = Comment.query(Comment.author == current_user.email())
+        #trying to make if user is logged in redirect to home page
+        if users.creare_login_url:
+           user_comments_query = Comment.query(Comment.author == current_user.email())
         user_forum = user_comments_query.fetch()
         logging.info(len(user_forum))
         forum_post =  Comment.query().fetch()
