@@ -56,8 +56,5 @@ class MainHandler(webapp2.RequestHandler): #the about page
     def post(self):
         author_name = users.get_current_user()
         r_comment = self.request.get("form_comment")
-        r_animal_content = self.request.get("form_animal")
-        
         logging.info("Comment " + r_comment) 
-        logging.info("favorite animal" + r_animal_content)
         new_comment = Comment(author = author_name.email(), contents = r_comment, fav_animal = r_animal_content)
