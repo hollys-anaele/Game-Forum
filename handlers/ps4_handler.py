@@ -11,7 +11,7 @@ class PS4Handler(webapp2.RequestHandler): #the bio page
         logging.info("PS4Handler")
         html_params = {
             "title": "PS4 Discussion Board",
-            "content": "Say some stuff about ps4 games"
+            "content": "This page is dedicated to discussing specifically Playstation 4 and games."
         }
         template = jinja_env.env.get_template('templates/tmpl.html')
         self.response.out.write(template.render(html_params))
