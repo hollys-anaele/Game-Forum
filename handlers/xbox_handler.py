@@ -42,11 +42,6 @@ class XboxHandler(webapp2.RequestHandler):
         
         self.redirect("/xbox")
         
-            
-        thing = {
-            "html_comments": comment_str
-        }
-        template = jinja_env.get_template("templates/comments.html")
-        self.response.out.write(template.render(thing))
+       
 
     
