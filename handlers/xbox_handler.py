@@ -5,39 +5,39 @@ import webapp2
 import os
 
 from google.appengine.ext import ndb
+from models import comment_model
 
 
-class Comment(ndb.Model):
-    author = ndb.StringProperty()
-    contents = ndb.StringProperty()
-    animal = ndb.StringProperty()
     
 class XboxHandler(webapp2.RequestHandler):
     def get(self):
-        logging.info("XboxHandler")
-        comments = Comment.query().fetch()
+
+    	logging.info("XboxHandler")
+        comments = comment_model.Comment.query(comment_model.Comment.platform == "xbox").fetch()
         comment_str = ""
         for comment in comments:
             comment_str += "<div>"
-            comment_str += "<h3>" + "comment by " + comment.author + ":" "</h3>"
-            comment_str += "<p>" + comment.contents + "</p>"
-            comment_str += "<p>" + str(comment.animal) + "</p>" #new line
+            comment_str += "<h3>" + "Post by " + comment.author + ":" "</h3>"          
+            comment_str += "<p>" + "<b>" + "About the game: " + str(comment.game_name) + "</b>" + "</p>" 
+            comment_str += "<p>" + str(comment.user_comment) + "</p>"
             comment_str += "</div>"
        
         thing = {
-            "title": "Xbox One Discussion Board",
             "html_comments": comment_str
         }
         template = jinja_env.env.get_template("templates/tmpl.html")
         self.response.out.write(template.render(thing))
 
+
+
        
     def post(self):
-        r_author = self.request.get("forum_author")
-        r_comment = self.request.get("forum_comment")
+        r_author = self.request.get("form_author")
+        r_comment = self.request.get("form_comment")
+        r_game = self.request.get("form_game")
         
 
-        new_comment = Comment(author=r_author, contents=r_comment)
+        new_comment = comment_model.Comment(author=r_author, user_comment=r_comment, game_name=r_game)
         new_comment.put()
         
         self.redirect("/xbox")
