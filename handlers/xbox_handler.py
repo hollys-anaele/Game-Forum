@@ -20,10 +20,9 @@ class XboxHandler(webapp2.RequestHandler):
         comment_str = ""
         for comment in comments:
             comment_str += "<div>"
-            
             str(comment.plat_form) + "</b>" + "</p>" 
-            comment_str += "<p>" + "<b>" + "About the game: " + str(comment.game_name) + "</b>" + "</p>" 
-               
+            comment_str += "<p>" + "<b>" + "About the game: " + str(comment.game_name) + "</b>" + "</p>"  
+            comment_str += "<h3>" + "Post by " + comment.author + ":" "</h3>" 
             comment_str += "<p>" + str(comment.user_comment) + "</p>"
             comment_str += "</div>"
        
@@ -37,7 +36,6 @@ class XboxHandler(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         if user != None:
-            
             r_comment = self.request.get("form_comment")
             r_game = self.request.get("form_game")
             r_platform = self.request.get("form_platform")
