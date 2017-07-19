@@ -26,7 +26,7 @@ class XboxHandler(webapp2.RequestHandler):
             comment_str += "<p>" + str(comment.user_comment) + "</p>"
             comment_str += "</div>"
        
-        template = jinja_env.env.get_template("templates/tmpl.html")
+        template = jinja_env.env.get_template("templates/xbox.html")
         thing = {
             "html_comments": comment_str,
             "html_login_url": users.create_login_url('/xbox'),
