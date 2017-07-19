@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+
+	<title> Welcome to The Game Forum
+	</title>
+	
+	</head>
+<body>
+
+<a href="{{html_login_url}}">login</a>
+<body style="background-color:#107c10; color: white; text-shadow: 1px 1px black; ">
+<h1>Post your Discussions Here</h1>
+{{ html_comments }}
+{{user}}
+{{count_comment}}
+<form method="POST">
+What console are you on?
+    <input name="form_platform">
+	<br>
+
+What is the game you're discussing?
+    <input name="form_game">
+	<br>    
+    
+What is your username?: 
+    <input name="form_author">
+	<br>
+
+    
+    <textarea name="form_comment">
+Your post here...
+	</textarea>    
+
+
+	<br/>
+	<input type="Submit" />
+
+</form>
+<img src="https://media.giphy.com/media/vUwBRIF75bwOc/giphy.gif" style= "top: 700px; left: 10px; "></img>
+
+<img src="https://assets.console-deals.com/images/content/xboxone/xbox-one.png" style = "position: relative; width:700px; left: 650px; bottom: 150px; "></img>
+
+
+</body>
+</html>
