@@ -4,4 +4,4 @@ class Comment(ndb.Model):
     author = ndb.StringProperty()
     user_comment = ndb.StringProperty()
     game_name = ndb.StringProperty()
-    platform = ndb.StringProperty()
+    plat_form = ndb.StringProperty()
