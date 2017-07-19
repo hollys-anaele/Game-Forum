@@ -14,7 +14,7 @@ class PS4Handler(webapp2.RequestHandler):
     def get(self):
    #     "title": "PS4 Discussion Board",
     	logging.info("PS4Handler")
-        comments = Comment.query(Comment.platform == "ps4").fetch()
+        comments = comment_model.Comment.query(comment_model.Comment.plat_form == "PS4").fetch()
         comment_str = ""
         for comment in comments:
             comment_str += "<div>"
@@ -41,7 +41,7 @@ class PS4Handler(webapp2.RequestHandler):
         r2_platform = self.request.get("form2_platform")
         
 
-        new_comment = Comment(author=r2_author, user_comment=r2_comment, game_name=r2_game, plat_form=form2_platform)
+        new_comment = comment_model.Comment(author=r2_author, user_comment=r2_comment, game_name=r2_game, plat_form=r2_platform)
         new_comment.put()
         
         self.redirect("/ps4")
