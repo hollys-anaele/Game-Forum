@@ -35,7 +35,7 @@ class PS4Handler(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         if user != None: 
-        r2_comment = self.request.get("form2_comment")
+
         r2_game = self.request.get("form2_game")
         r2_platform = self.request.get("form2_platform")
         
