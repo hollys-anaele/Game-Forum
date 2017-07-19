@@ -25,7 +25,7 @@ class PS4Handler(webapp2.RequestHandler):
             comment_str += "<h3>" + "Post by " + comment.author + ":" "</h3>"    
             comment_str += "<p>" + str(comment.user_comment) + "</p>"
             comment_str += "</div>"
-        template = jinja_env.env.get_template("templates/tmpl2.html")
+        template = jinja_env.env.get_template("templates/ps4.html")
         thing = {
             "html_comments2": comment_str,
             "html_login_url2": users.create_login_url('/ps4'),
