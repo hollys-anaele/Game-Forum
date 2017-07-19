@@ -25,7 +25,7 @@ class PS4Handler(webapp2.RequestHandler):
             comment_str += "<h3>" + "Post by " + comment.author + ":" "</h3>"    
             comment_str += "<p>" + str(comment.user_comment) + "</p>"
             comment_str += "</div>"
-        template = jinja_env.env.get_template("templates/tmpl2.html")
+        template = jinja_env.env.get_template("templates/ps4.html")
         thing = {
             "html_comments2": comment_str,
             "html_login_url2": users.create_login_url('/ps4'),
@@ -36,12 +36,12 @@ class PS4Handler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user != None: 
 
-        r2_game = self.request.get("form2_game")
-        r2_platform = self.request.get("form2_platform")
-        
+            r2_comment = self.request.get("form2_comment")
+            r2_game = self.request.get("form2_game")
+            r2_platform = self.request.get("form2_platform")
 
-        new_comment = comment_model.Comment(author=user.email(), user_comment=r2_comment, game_name=r2_game, plat_form=r2_platform)
-        new_comment.put()
+            new_comment = comment_model.Comment(author=user.email(), user_comment=r2_comment, game_name=r2_game, plat_form=r2_platform)
+            new_comment.put()
         
         self.redirect("/ps4")
         
