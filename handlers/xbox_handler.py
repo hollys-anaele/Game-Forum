@@ -21,8 +21,8 @@ class XboxHandler(webapp2.RequestHandler):
         for comment in comments:
             comment_str += "<div>"
             str(comment.plat_form) + "</b>" + "</p>" 
-            comment_str += "<p>" + "<b>" + "About the game: " + str(comment.game_name) + "</b>" + "</p>"  
-            comment_str += "<h3>" + "Post by " + comment.author + ":" "</h3>" 
+            comment_str += "<h3>" "<p>" + "<b>" + "About the game: " + str(comment.game_name) + "</b>" + "</p>" "</h3>" 
+            comment_str += "<h4>" + "Post by " + comment.author + ":" "</h4>" 
             comment_str += "<p>" + str(comment.user_comment) + "</p>"
             comment_str += "</div>"
        
